@@ -38,8 +38,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Telephone Number</label>
-                            <input type="text" class="form-control" name="telephone_number"
-                                placeholder="Please use this format: 0712345678" id="body" aria-describedby="" />
+                            <input type="tel" class="form-control" name="telephone_number"
+                            placeholder="0712345678" pattern="[0-9]{10}" id="tel" aria-describedby="" />
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Guardian_Name </label>
@@ -47,8 +47,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Guardian Telephone Number</label>
-                            <input type="text" class="form-control" name="gtelephone_number"
-                                placeholder="Please use this format: 0712345678" id="body" aria-describedby="" />
+                            <input type="tel" class="form-control" name="gtelephone_number"
+                            placeholder="0712345678" pattern="[0-9]{10}" id="body" aria-describedby="" />
                         </div>
                         <br />
                         <button type="submit" class="btn btn-primary">Submit</button>

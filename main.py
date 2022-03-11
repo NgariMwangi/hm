@@ -73,6 +73,7 @@ def patients():
         telephone = request.form['telephone_number']
         gname=request.form['gname']
         gtelephone_number=request.form['gtelephone_number']
+        print(len(telephone))
         new_patient = Patient(first_name = first_name, last_name = last_name, gender = gender, address = address, telephone = telephone,guardian_name=gname,guardian_phone_no=gtelephone_number)
 
         db.session.add(new_patient)
@@ -214,7 +215,7 @@ def edit_staff():
 def dashboard_doc():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
-    department = request.form['department']
+    department = "doctor"
     role = request.form['role']
     telephone = request.form['telephone']
     email = request.form['email']
@@ -326,12 +327,13 @@ def register():
     if request.method == 'POST':
         first_name = request.form['first_name']
         last_name = request.form['last_name']
-        department = request.form['department']
+        
         role = request.form['role']
         telephone = request.form['telephone']
         email = request.form['email']
         password = request.form['password']
         hashed_password = generate_password_hash(password = password)
+        department="surgeon"
 
         # check that email does not exist before registering the user
         if Staff.check_email_exists(email):
@@ -512,6 +514,10 @@ def visitor_reg():
 @app.route('/visitorslist', methods=["POST","GET"])
 def visitors_list():
     visitors=Visitors.query.all()
+    for visitor in visitors:
+        print(visitor.patients.first_name)
+    print(visitors)
+    
     return render_template('visitorslist.html',visitors=visitors)
 
 @app.route('/inventory',methods= ["POST","GET"])
@@ -527,6 +533,12 @@ def inventory():
     else:
         inventory=Inventory.query.all()
         return render_template("inventory.html",inventory=inventory)
+
+@app.route('/guardians',methods= ["POST","GET"])
+def guardian():
+    patients = Patient.query.all()
+    return render_template("guardians.html",patients=patients)
+    
         
 
 
